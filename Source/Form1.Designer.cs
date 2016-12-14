@@ -30,11 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.Header_Panel = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.Footer_Panel = new System.Windows.Forms.Panel();
             this.Footer_seperator = new System.Windows.Forms.Panel();
             this.about_tool = new System.Windows.Forms.Label();
             this.link_ets2mp = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.ets_browse = new System.Windows.Forms.Button();
             this.ats_browse = new System.Windows.Forms.Button();
             this.ats_file = new System.Windows.Forms.TextBox();
@@ -46,6 +46,12 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.button5 = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.button6 = new System.Windows.Forms.Button();
             this.Header_Panel.SuspendLayout();
             this.Footer_Panel.SuspendLayout();
             this.SuspendLayout();
@@ -58,8 +64,19 @@
             this.Header_Panel.Controls.Add(this.label1);
             this.Header_Panel.Location = new System.Drawing.Point(1, 0);
             this.Header_Panel.Name = "Header_Panel";
-            this.Header_Panel.Size = new System.Drawing.Size(638, 66);
+            this.Header_Panel.Size = new System.Drawing.Size(480, 66);
             this.Header_Panel.TabIndex = 62;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Calibri", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(11, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(297, 36);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "TruckersMP UI Changer";
             // 
             // Footer_Panel
             // 
@@ -68,9 +85,9 @@
             this.Footer_Panel.Controls.Add(this.Footer_seperator);
             this.Footer_Panel.Controls.Add(this.about_tool);
             this.Footer_Panel.Controls.Add(this.link_ets2mp);
-            this.Footer_Panel.Location = new System.Drawing.Point(0, 279);
+            this.Footer_Panel.Location = new System.Drawing.Point(0, 409);
             this.Footer_Panel.Name = "Footer_Panel";
-            this.Footer_Panel.Size = new System.Drawing.Size(639, 37);
+            this.Footer_Panel.Size = new System.Drawing.Size(481, 37);
             this.Footer_Panel.TabIndex = 63;
             // 
             // Footer_seperator
@@ -80,7 +97,7 @@
             this.Footer_seperator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
             this.Footer_seperator.Location = new System.Drawing.Point(0, 0);
             this.Footer_seperator.Name = "Footer_seperator";
-            this.Footer_seperator.Size = new System.Drawing.Size(639, 1);
+            this.Footer_seperator.Size = new System.Drawing.Size(481, 1);
             this.Footer_seperator.TabIndex = 50;
             // 
             // about_tool
@@ -105,28 +122,17 @@
             this.link_ets2mp.Cursor = System.Windows.Forms.Cursors.Hand;
             this.link_ets2mp.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.link_ets2mp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(65)))), ((int)(((byte)(71)))));
-            this.link_ets2mp.Location = new System.Drawing.Point(422, 10);
+            this.link_ets2mp.Location = new System.Drawing.Point(264, 10);
             this.link_ets2mp.Name = "link_ets2mp";
             this.link_ets2mp.Size = new System.Drawing.Size(204, 18);
             this.link_ets2mp.TabIndex = 48;
             this.link_ets2mp.Text = "TRUCKERSMP OFFICIAL WEBSITE";
             this.link_ets2mp.Click += new System.EventHandler(this.link_ets2mp_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Calibri", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(11, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(297, 36);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "TruckersMP UI Changer";
-            // 
             // ets_browse
             // 
             this.ets_browse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ets_browse.Location = new System.Drawing.Point(547, 102);
+            this.ets_browse.Location = new System.Drawing.Point(389, 102);
             this.ets_browse.Name = "ets_browse";
             this.ets_browse.Size = new System.Drawing.Size(79, 27);
             this.ets_browse.TabIndex = 64;
@@ -137,7 +143,7 @@
             // ats_browse
             // 
             this.ats_browse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ats_browse.Location = new System.Drawing.Point(547, 163);
+            this.ats_browse.Location = new System.Drawing.Point(389, 163);
             this.ats_browse.Name = "ats_browse";
             this.ats_browse.Size = new System.Drawing.Size(79, 26);
             this.ats_browse.TabIndex = 65;
@@ -150,9 +156,9 @@
             this.ats_file.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ats_file.Font = new System.Drawing.Font("Calibri", 11.25F);
-            this.ats_file.Location = new System.Drawing.Point(18, 163);
+            this.ats_file.Location = new System.Drawing.Point(12, 163);
             this.ats_file.Name = "ats_file";
-            this.ats_file.Size = new System.Drawing.Size(523, 26);
+            this.ats_file.Size = new System.Drawing.Size(371, 26);
             this.ats_file.TabIndex = 66;
             // 
             // ets_file
@@ -160,16 +166,16 @@
             this.ets_file.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ets_file.Font = new System.Drawing.Font("Calibri", 11.25F);
-            this.ets_file.Location = new System.Drawing.Point(18, 103);
+            this.ets_file.Location = new System.Drawing.Point(12, 103);
             this.ets_file.Name = "ets_file";
-            this.ets_file.Size = new System.Drawing.Size(523, 26);
+            this.ets_file.Size = new System.Drawing.Size(371, 26);
             this.ets_file.TabIndex = 67;
             // 
             // Label4
             // 
             this.Label4.AutoSize = true;
             this.Label4.Font = new System.Drawing.Font("Calibri", 11.25F);
-            this.Label4.Location = new System.Drawing.Point(15, 82);
+            this.Label4.Location = new System.Drawing.Point(9, 82);
             this.Label4.Name = "Label4";
             this.Label4.Size = new System.Drawing.Size(275, 18);
             this.Label4.TabIndex = 68;
@@ -179,7 +185,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Calibri", 11.25F);
-            this.label2.Location = new System.Drawing.Point(15, 142);
+            this.label2.Location = new System.Drawing.Point(9, 142);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(269, 18);
             this.label2.TabIndex = 69;
@@ -192,12 +198,12 @@
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
             this.panel1.Location = new System.Drawing.Point(12, 237);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(614, 1);
+            this.panel1.Size = new System.Drawing.Size(456, 1);
             this.panel1.TabIndex = 51;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(18, 201);
+            this.button1.Location = new System.Drawing.Point(12, 201);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(120, 26);
             this.button1.TabIndex = 70;
@@ -208,7 +214,7 @@
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(506, 201);
+            this.button2.Location = new System.Drawing.Point(348, 201);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(120, 26);
             this.button2.TabIndex = 71;
@@ -229,7 +235,7 @@
             // button3
             // 
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(484, 246);
+            this.button3.Location = new System.Drawing.Point(326, 244);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(142, 26);
             this.button3.TabIndex = 74;
@@ -237,11 +243,82 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.panel2.Location = new System.Drawing.Point(12, 276);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(456, 1);
+            this.panel2.TabIndex = 52;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Calibri", 11.25F);
+            this.label3.Location = new System.Drawing.Point(9, 280);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(75, 18);
+            this.label3.TabIndex = 75;
+            this.label3.Text = "Select font";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBox1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(12, 300);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(270, 23);
+            this.comboBox1.TabIndex = 76;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // button5
+            // 
+            this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button5.Location = new System.Drawing.Point(288, 297);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(87, 26);
+            this.button5.TabIndex = 77;
+            this.button5.Text = "Install font";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(9, 325);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(459, 81);
+            this.label5.TabIndex = 78;
+            this.label5.Text = "Keep on trucking!";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // button6
+            // 
+            this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button6.Location = new System.Drawing.Point(381, 297);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(87, 26);
+            this.button6.TabIndex = 79;
+            this.button6.Text = "Restore font";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(638, 316);
+            this.ClientSize = new System.Drawing.Size(480, 446);
+            this.Controls.Add(this.button6);
+            this.Controls.Add(this.button5);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button2);
@@ -255,9 +332,11 @@
             this.Controls.Add(this.ets_browse);
             this.Controls.Add(this.Header_Panel);
             this.Controls.Add(this.Footer_Panel);
+            this.Controls.Add(this.label5);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(496, 485);
             this.Name = "Form1";
             this.Text = "TruckersMP UI Changer";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -289,6 +368,12 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button button6;
     }
 }
 

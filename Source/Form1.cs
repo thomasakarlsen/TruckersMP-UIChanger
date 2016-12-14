@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,7 +21,10 @@ namespace UIChanger
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            foreach (FontFamily oneFontFamily in FontFamily.Families)
+            {
+                comboBox1.Items.Add(oneFontFamily.Name);
+            }
         }
 
         private void link_ets2mp_Click(object sender, EventArgs e)
@@ -89,7 +93,7 @@ namespace UIChanger
                 }
             }
             catch {
-                MessageBox.Show("ETS2: An error occured patching the image!", "TruckersMP UI Changer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("ETS2: An error occurred patching the image!", "TruckersMP UI Changer", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             try
@@ -125,7 +129,7 @@ namespace UIChanger
             }
             catch
             {
-                MessageBox.Show("ATS: An error occured patching the image!", "TruckersMP UI Changer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("ATS: An error occurred patching the image!", "TruckersMP UI Changer", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             MessageBox.Show("Patch complete!", "TruckersMP UI Changer", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
@@ -146,7 +150,7 @@ namespace UIChanger
             }
             catch
             {
-                MessageBox.Show("ETS2: An error occured restoring the UI Skin!", "TruckersMP UI Changer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("ETS2: An error occurred restoring the UI Skin!", "TruckersMP UI Changer", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             try
@@ -162,7 +166,7 @@ namespace UIChanger
             }
             catch
             {
-                MessageBox.Show("ATS: An error occured restoring the UI Skin!", "TruckersMP UI Changer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("ATS: An error occurred restoring the UI Skin!", "TruckersMP UI Changer", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             MessageBox.Show("Restore complete!", "TruckersMP UI Changer", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
@@ -188,7 +192,8 @@ namespace UIChanger
                 }
                 catch
                 {
-                    MessageBox.Show("ETS2: An error occured extracting the skin!", "TruckersMP UI Changer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("ETS2: An error occurred extracting the skin!", "TruckersMP UI Changer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
 
                 MessageBox.Show("ETS2: Skin extracted!", "TruckersMP UI Changer", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
@@ -215,10 +220,103 @@ namespace UIChanger
                 }
                 catch
                 {
-                    MessageBox.Show("ATS: An error occured extracting the skin!", "TruckersMP UI Changer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("ATS: An error occurred extracting the skin!", "TruckersMP UI Changer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
 
                 MessageBox.Show("ATS: Skin extracted!", "TruckersMP UI Changer", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            //Install font
+            try
+            {
+                if (comboBox1.SelectedItem.ToString() != "")
+                {
+                    
+                    if (!File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\TruckersMP\\data\\shared\\fonts\\OpenSans_backup.ttf"))
+                        File.Copy(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\TruckersMP\\data\\shared\\fonts\\OpenSans.ttf", Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\TruckersMP\\data\\shared\\fonts\\OpenSans_backup.ttf");
+
+                    var font = getFontFileName(new Font(comboBox1.SelectedItem.ToString(), this.label5.Font.Size));
+                    File.Copy(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), font), Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\TruckersMP\\data\\shared\\fonts\\OpenSans.ttf", true);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("An error occurred patching the font!\n\nMight be an incompatible font, try another one!", "TruckersMP UI Changer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            MessageBox.Show("Font installed!", "TruckersMP UI Changer", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            label5.Font = new Font(comboBox1.SelectedItem.ToString(), this.label5.Font.Size);
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            //Restore font
+            try
+            {
+                if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\TruckersMP\\data\\shared\\fonts\\OpenSans_backup.ttf"))
+                {
+                    File.Copy(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\TruckersMP\\data\\shared\\fonts\\OpenSans_backup.ttf", Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\TruckersMP\\data\\shared\\fonts\\OpenSans.ttf", true);
+                }
+                else
+                {
+                    MessageBox.Show("No backup found!\n\nYou need to reinstall the mod to restore the font!", "TruckersMP UI Changer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("An error occurred restoring the font!", "TruckersMP UI Changer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            MessageBox.Show("Font restored!", "TruckersMP UI Changer", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+        }
+
+        public static string getFontFileName(Font font)
+        {
+            RegistryKey fonts = null;
+            try
+            {
+                fonts = Registry.LocalMachine.OpenSubKey(@"Software\Microsoft\Windows NT\CurrentVersion\Fonts", false);
+                if (fonts == null)
+                {
+                    fonts = Registry.LocalMachine.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Fonts", false);
+                    if (fonts == null)
+                    {
+                        throw new Exception("Registery aint feeling so good :/");
+                    }
+                }
+                string[] names = fonts.GetValueNames();
+                StringBuilder nameb = new StringBuilder(font.Name);
+                if (font.Bold)
+                    nameb.Append(" Bold");
+                if (font.Italic)
+                    nameb.Append(" Italic");
+                nameb.Append(" (TrueType)");
+                string fullname = nameb.ToString();
+                string basename = font.Name + " (TrueType)";
+                object file = fonts.GetValue(fullname);
+                if (file == null && fullname != basename)
+                {
+                    file = fonts.GetValue(basename);
+                }
+                if (file != null) return file.ToString();
+                return null;
+            }
+            finally
+            {
+                if (fonts != null)
+                {
+                    fonts.Dispose();
+                }
             }
         }
     }

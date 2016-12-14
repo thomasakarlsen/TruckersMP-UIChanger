@@ -31,14 +31,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(About));
             this.versionLabel = new System.Windows.Forms.Label();
             this.Header_Panel = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.aboutLabel = new System.Windows.Forms.Label();
             this.Footer_Panel = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.githubLink = new System.Windows.Forms.Label();
             this.legalLink = new System.Windows.Forms.Label();
             this.devLink = new System.Windows.Forms.Label();
             this.Footer_seperator = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.Header_Panel.SuspendLayout();
             this.Footer_Panel.SuspendLayout();
             this.SuspendLayout();
@@ -51,7 +51,7 @@
             this.versionLabel.Name = "versionLabel";
             this.versionLabel.Size = new System.Drawing.Size(262, 66);
             this.versionLabel.TabIndex = 2;
-            this.versionLabel.Text = "Version: 1.0";
+            this.versionLabel.Text = "Version: 2.0";
             this.versionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Header_Panel
@@ -65,6 +65,17 @@
             this.Header_Panel.Name = "Header_Panel";
             this.Header_Panel.Size = new System.Drawing.Size(566, 66);
             this.Header_Panel.TabIndex = 65;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Calibri", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(12, 11);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(297, 36);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "TruckersMP UI Changer";
             // 
             // aboutLabel
             // 
@@ -90,6 +101,16 @@
             this.Footer_Panel.Name = "Footer_Panel";
             this.Footer_Panel.Size = new System.Drawing.Size(566, 37);
             this.Footer_Panel.TabIndex = 66;
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.panel1.Location = new System.Drawing.Point(3, 1);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(639, 1);
+            this.panel1.TabIndex = 67;
             // 
             // githubLink
             // 
@@ -139,27 +160,6 @@
             this.Footer_seperator.Name = "Footer_seperator";
             this.Footer_seperator.Size = new System.Drawing.Size(566, 1);
             this.Footer_seperator.TabIndex = 50;
-            // 
-            // panel1
-            // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.panel1.Location = new System.Drawing.Point(3, 1);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(639, 1);
-            this.panel1.TabIndex = 67;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Calibri", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(12, 11);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(297, 36);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "TruckersMP UI Changer";
             // 
             // About
             // 
