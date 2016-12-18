@@ -35,16 +35,11 @@
             this.Footer_seperator = new System.Windows.Forms.Panel();
             this.about_tool = new System.Windows.Forms.Label();
             this.link_ets2mp = new System.Windows.Forms.Label();
-            this.ets_browse = new System.Windows.Forms.Button();
-            this.ats_browse = new System.Windows.Forms.Button();
-            this.ats_file = new System.Windows.Forms.TextBox();
-            this.ets_file = new System.Windows.Forms.TextBox();
+            this.uipack_browse = new System.Windows.Forms.Button();
+            this.uipack_file = new System.Windows.Forms.TextBox();
             this.Label4 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
@@ -52,6 +47,7 @@
             this.button5 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.Header_Panel.SuspendLayout();
             this.Footer_Panel.SuspendLayout();
             this.SuspendLayout();
@@ -85,7 +81,7 @@
             this.Footer_Panel.Controls.Add(this.Footer_seperator);
             this.Footer_Panel.Controls.Add(this.about_tool);
             this.Footer_Panel.Controls.Add(this.link_ets2mp);
-            this.Footer_Panel.Location = new System.Drawing.Point(0, 409);
+            this.Footer_Panel.Location = new System.Drawing.Point(0, 364);
             this.Footer_Panel.Name = "Footer_Panel";
             this.Footer_Panel.Size = new System.Drawing.Size(481, 37);
             this.Footer_Panel.TabIndex = 63;
@@ -129,47 +125,26 @@
             this.link_ets2mp.Text = "TRUCKERSMP OFFICIAL WEBSITE";
             this.link_ets2mp.Click += new System.EventHandler(this.link_ets2mp_Click);
             // 
-            // ets_browse
+            // uipack_browse
             // 
-            this.ets_browse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ets_browse.Location = new System.Drawing.Point(389, 102);
-            this.ets_browse.Name = "ets_browse";
-            this.ets_browse.Size = new System.Drawing.Size(79, 27);
-            this.ets_browse.TabIndex = 64;
-            this.ets_browse.Text = "Browse";
-            this.ets_browse.UseVisualStyleBackColor = true;
-            this.ets_browse.Click += new System.EventHandler(this.ets_browse_Click);
+            this.uipack_browse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.uipack_browse.Location = new System.Drawing.Point(389, 103);
+            this.uipack_browse.Name = "uipack_browse";
+            this.uipack_browse.Size = new System.Drawing.Size(79, 27);
+            this.uipack_browse.TabIndex = 64;
+            this.uipack_browse.Text = "Browse";
+            this.uipack_browse.UseVisualStyleBackColor = true;
+            this.uipack_browse.Click += new System.EventHandler(this.ets_browse_Click);
             // 
-            // ats_browse
+            // uipack_file
             // 
-            this.ats_browse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ats_browse.Location = new System.Drawing.Point(389, 163);
-            this.ats_browse.Name = "ats_browse";
-            this.ats_browse.Size = new System.Drawing.Size(79, 26);
-            this.ats_browse.TabIndex = 65;
-            this.ats_browse.Text = "Browse";
-            this.ats_browse.UseVisualStyleBackColor = true;
-            this.ats_browse.Click += new System.EventHandler(this.ats_browse_Click);
-            // 
-            // ats_file
-            // 
-            this.ats_file.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.uipack_file.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ats_file.Font = new System.Drawing.Font("Calibri", 11.25F);
-            this.ats_file.Location = new System.Drawing.Point(12, 163);
-            this.ats_file.Name = "ats_file";
-            this.ats_file.Size = new System.Drawing.Size(371, 26);
-            this.ats_file.TabIndex = 66;
-            // 
-            // ets_file
-            // 
-            this.ets_file.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ets_file.Font = new System.Drawing.Font("Calibri", 11.25F);
-            this.ets_file.Location = new System.Drawing.Point(12, 103);
-            this.ets_file.Name = "ets_file";
-            this.ets_file.Size = new System.Drawing.Size(371, 26);
-            this.ets_file.TabIndex = 67;
+            this.uipack_file.Font = new System.Drawing.Font("Calibri", 11.25F);
+            this.uipack_file.Location = new System.Drawing.Point(12, 103);
+            this.uipack_file.Name = "uipack_file";
+            this.uipack_file.Size = new System.Drawing.Size(371, 26);
+            this.uipack_file.TabIndex = 67;
             // 
             // Label4
             // 
@@ -177,69 +152,40 @@
             this.Label4.Font = new System.Drawing.Font("Calibri", 11.25F);
             this.Label4.Location = new System.Drawing.Point(9, 82);
             this.Label4.Name = "Label4";
-            this.Label4.Size = new System.Drawing.Size(275, 18);
+            this.Label4.Size = new System.Drawing.Size(97, 18);
             this.Label4.TabIndex = 68;
-            this.Label4.Text = "UI Skin file to load for ETS2MP (ui_skin.png)";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Calibri", 11.25F);
-            this.label2.Location = new System.Drawing.Point(9, 142);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(269, 18);
-            this.label2.TabIndex = 69;
-            this.label2.Text = "UI Skin file to load for ATSMP (ui_skin.png)";
-            // 
-            // panel1
-            // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.panel1.Location = new System.Drawing.Point(12, 237);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(456, 1);
-            this.panel1.TabIndex = 51;
+            this.Label4.Text = "UI Pack ZIP file";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 201);
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Location = new System.Drawing.Point(12, 136);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(120, 26);
+            this.button1.Size = new System.Drawing.Size(142, 26);
             this.button1.TabIndex = 70;
-            this.button1.Text = "Reset to default skins";
+            this.button1.Text = "Reset to default UI Pack";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(348, 201);
+            this.button2.Location = new System.Drawing.Point(326, 136);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(120, 26);
+            this.button2.Size = new System.Drawing.Size(142, 26);
             this.button2.TabIndex = 71;
-            this.button2.Text = "Install custom skin";
+            this.button2.Text = "Install UI Pack";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(12, 244);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(142, 26);
-            this.button4.TabIndex = 73;
-            this.button4.Text = "Extract ETS ui_skin file";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
             // button3
             // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(326, 244);
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button3.Location = new System.Drawing.Point(277, 332);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(142, 26);
+            this.button3.Size = new System.Drawing.Size(191, 26);
             this.button3.TabIndex = 74;
-            this.button3.Text = "Extract ATS ui_skin file";
+            this.button3.Text = "Open TruckersMP Directory";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -248,7 +194,7 @@
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.panel2.Location = new System.Drawing.Point(12, 276);
+            this.panel2.Location = new System.Drawing.Point(12, 173);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(456, 1);
             this.panel2.TabIndex = 52;
@@ -257,7 +203,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Calibri", 11.25F);
-            this.label3.Location = new System.Drawing.Point(9, 280);
+            this.label3.Location = new System.Drawing.Point(9, 177);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(75, 18);
             this.label3.TabIndex = 75;
@@ -269,7 +215,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBox1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(12, 300);
+            this.comboBox1.Location = new System.Drawing.Point(12, 197);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(270, 23);
             this.comboBox1.TabIndex = 76;
@@ -278,7 +224,7 @@
             // button5
             // 
             this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button5.Location = new System.Drawing.Point(288, 297);
+            this.button5.Location = new System.Drawing.Point(288, 194);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(87, 26);
             this.button5.TabIndex = 77;
@@ -291,9 +237,9 @@
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(9, 325);
+            this.label5.Location = new System.Drawing.Point(9, 222);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(459, 81);
+            this.label5.Size = new System.Drawing.Size(459, 104);
             this.label5.TabIndex = 78;
             this.label5.Text = "Keep on trucking!";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -301,7 +247,7 @@
             // button6
             // 
             this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button6.Location = new System.Drawing.Point(381, 297);
+            this.button6.Location = new System.Drawing.Point(381, 194);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(87, 26);
             this.button6.TabIndex = 79;
@@ -309,34 +255,40 @@
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.panel1.Location = new System.Drawing.Point(12, 325);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(456, 1);
+            this.panel1.TabIndex = 51;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(480, 446);
+            this.ClientSize = new System.Drawing.Size(480, 401);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.button4);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.Label4);
-            this.Controls.Add(this.ets_file);
-            this.Controls.Add(this.ats_file);
-            this.Controls.Add(this.ats_browse);
-            this.Controls.Add(this.ets_browse);
+            this.Controls.Add(this.uipack_file);
+            this.Controls.Add(this.uipack_browse);
             this.Controls.Add(this.Header_Panel);
             this.Controls.Add(this.Footer_Panel);
             this.Controls.Add(this.label5);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(496, 485);
+            this.MinimumSize = new System.Drawing.Size(496, 440);
             this.Name = "Form1";
             this.Text = "TruckersMP UI Changer";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -357,16 +309,11 @@
         private System.Windows.Forms.Panel Footer_seperator;
         internal System.Windows.Forms.Label about_tool;
         internal System.Windows.Forms.Label link_ets2mp;
-        private System.Windows.Forms.Button ets_browse;
-        private System.Windows.Forms.Button ats_browse;
-        private System.Windows.Forms.TextBox ats_file;
-        private System.Windows.Forms.TextBox ets_file;
+        private System.Windows.Forms.Button uipack_browse;
+        private System.Windows.Forms.TextBox uipack_file;
         private System.Windows.Forms.Label Label4;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label3;
@@ -374,6 +321,7 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 

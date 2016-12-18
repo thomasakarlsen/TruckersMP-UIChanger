@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO.Compression;
 
 namespace UIChanger
 {
@@ -41,191 +42,195 @@ namespace UIChanger
         private void ets_browse_Click(object sender, EventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Filter = "Image files (*.png) | *.png";
-            dialog.Title = "Please select an UI Skin image";
+            dialog.Filter = "ZIP File (*.zip) | *.zip";
+            dialog.Title = "Please select a UI Pack ZIP file";
             if (dialog.ShowDialog() == DialogResult.OK) 
             {
-                ets_file.Text = dialog.FileName;
-            }
-        }
-
-        private void ats_browse_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Filter = "Image files (*.png) | *.png";
-            dialog.Title = "Please select an UI Skin image";
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                    ats_file.Text = dialog.FileName;
+                uipack_file.Text = dialog.FileName;
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            string TruckersMPDirectory = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\TruckersMP\\data";
+            string workDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\UIChanger";
+            List<string> TruckersMPFiles = new List<string>();
+            List <string> UIPackFiles = new List<string>();
+
             try
             {
-                if (ets_file.Text != "")
+                if (uipack_file.Text != "")
                 {
-                    if (File.Exists(ets_file.Text))
+                    if (File.Exists(uipack_file.Text))
                     {
-                        var header = new byte[4];
-                        using (var fs = new FileStream(ets_file.Text, FileMode.Open))
+                        try
                         {
-                            fs.Read(header, 0, 4);
-                            fs.Close();
+                            if (!Directory.Exists(workDirectory))
+                                Directory.CreateDirectory(workDirectory);
+
+                            if (Directory.Exists(workDirectory + "\\temp"))
+                                Directory.Delete(workDirectory + "\\temp", true);
+
+                            Directory.CreateDirectory(workDirectory + "\\temp");
+
+                            ZipFile.ExtractToDirectory(uipack_file.Text, workDirectory + "\\temp");
+                        }
+                        catch
+                        {
+                            MessageBox.Show("An error occured while unpacking UI Pack!", "TruckersMP UI Changer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
                         }
 
-                        var strHeader = Encoding.ASCII.GetString(header);
-                        if (strHeader.ToLower().EndsWith("png"))
+                        try
                         {
-                            if (!File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\TruckersMP\\data\\ets2\\ui\\ui_skin_backup.png"))
-                                File.Copy(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\TruckersMP\\data\\ets2\\ui\\ui_skin.png", Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\TruckersMP\\data\\ets2\\ui\\ui_skin_backup.png");
-                            File.Copy(ets_file.Text, Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\TruckersMP\\data\\ets2\\ui\\ui_skin.png", true);
+                            foreach (var file in System.IO.Directory.GetFiles(TruckersMPDirectory, "*.*", System.IO.SearchOption.AllDirectories))
+                            {
+                                FileInfo info = new FileInfo(file);
+
+                                string key = info.FullName;
+                                key = key.Replace(TruckersMPDirectory, "");
+
+                                TruckersMPFiles.Add(key);
+                            }
                         }
-                        else
+                        catch
                         {
-                            MessageBox.Show("ETS2: Image selected is not a png file!", "TruckersMP UI Changer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("An error occured while mapping TruckersMP!", "TruckersMP UI Changer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+
+                        try
+                        {
+                            foreach (var file in System.IO.Directory.GetFiles(workDirectory + "\\temp", "*.*", System.IO.SearchOption.AllDirectories))
+                            {
+                                FileInfo info = new FileInfo(file);
+
+                                string key = info.FullName;
+                                key = key.Replace(workDirectory + "\\temp", "");
+
+                                UIPackFiles.Add(key);
+                            }
+                        }
+                        catch
+                        {
+                            MessageBox.Show("An error occured while mapping UI Pack!", "TruckersMP UI Changer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+
+                        try
+                        {
+                            foreach (var file in TruckersMPFiles)
+                            {
+                                string clean = ((file.Replace("\\ats", "")).Replace("\\ets2", "")).Replace("\\shared", "");
+
+                                if (UIPackFiles.Contains(clean))
+                                {
+
+                                    int index = UIPackFiles.FindIndex(x => x.StartsWith(clean));
+
+                                    string[] s = file.Split('.');
+                                    string backupFile = s[0] + "_backup." + s[1];
+
+                                    if (!File.Exists(TruckersMPDirectory + backupFile))
+                                        File.Copy(TruckersMPDirectory + file, TruckersMPDirectory + backupFile);
+
+                                    File.Copy(workDirectory + "\\temp" + UIPackFiles[index], TruckersMPDirectory + file, true);
+                                }
+                                else if (UIPackFiles.Contains(clean.Replace("ui_skin", "ets2mp_ui_skin")))
+                                {
+                                    int index = UIPackFiles.FindIndex(x => x.StartsWith(clean.Replace("ui_skin", "ets2mp_ui_skin")));
+
+                                    string[] s = file.Split('.');
+                                    string backupFile = s[0] + "_backup." + s[1];
+
+                                    if (!File.Exists(TruckersMPDirectory + backupFile))
+                                        File.Copy(TruckersMPDirectory + file, TruckersMPDirectory + backupFile);
+
+                                    File.Copy(workDirectory + "\\temp" + UIPackFiles[index], TruckersMPDirectory + file, true);
+                                }
+                                else if (UIPackFiles.Contains(clean.Replace("ui_skin", "atsmp_ui_skin")))
+                                {
+                                    int index = UIPackFiles.FindIndex(x => x.StartsWith(clean.Replace("ui_skin", "atsmp_ui_skin")));
+
+                                    string[] s = file.Split('.');
+                                    string backupFile = s[0] + "_backup." + s[1];
+
+                                    if (!File.Exists(TruckersMPDirectory + backupFile))
+                                        File.Copy(TruckersMPDirectory + file, TruckersMPDirectory + backupFile);
+
+                                    File.Copy(workDirectory + "\\temp" + UIPackFiles[index], TruckersMPDirectory + file, true);
+                                }
+                            }
+                        }
+                        catch
+                        {
+                            MessageBox.Show("An error occured while patching files!", "TruckersMP UI Changer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
                         }
                     }
                     else{
-                        MessageBox.Show("ETS2: Image path invalid!\n\nMake path empty to exclude it!", "TruckersMP UI Changer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Unable to find selected file, please select another one!", "TruckersMP UI Changer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
                     }
                 }
+
+                if (Directory.Exists(workDirectory))
+                    Directory.Delete(workDirectory, true);
             }
             catch {
-                MessageBox.Show("ETS2: An error occurred patching the image!", "TruckersMP UI Changer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occured while patching UI Pack.\n\nGeneric error", "TruckersMP UI Changer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
-            try
-            {
-                if (ats_file.Text != "")
-                {
-                    if (File.Exists(ats_file.Text))
-                    {
-                        var header = new byte[4];
-                        using (var fs = new FileStream(ats_file.Text, FileMode.Open))
-                        {
-                            fs.Read(header, 0, 4);
-                            fs.Close();
-                        }
-
-                        var strHeader = Encoding.ASCII.GetString(header);
-                        if (strHeader.ToLower().EndsWith("png"))
-                        {
-                            if (!File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\TruckersMP\\data\\ats\\ui\\ui_skin_backup.png"))
-                                File.Copy(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\TruckersMP\\data\\ats\\ui\\ui_skin.png", Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\TruckersMP\\data\\ats\\ui\\ui_skin_backup.png");
-                            File.Copy(ats_file.Text, Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\TruckersMP\\data\\ats\\ui\\ui_skin.png", true);
-                        }
-                        else
-                        {
-                            MessageBox.Show("ATS: Image selected is not a png file!", "TruckersMP UI Changer", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("ATS: Image path invalid!\n\nMake path empty to exclude it!", "TruckersMP UI Changer", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
-            catch
-            {
-                MessageBox.Show("ATS: An error occurred patching the image!", "TruckersMP UI Changer", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            MessageBox.Show("Patch complete!", "TruckersMP UI Changer", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            MessageBox.Show("Install complete.", "TruckersMP UI Changer", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            string TruckersMPDirectory = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\TruckersMP\\data";
+            List<string> TruckersMPFiles = new List<string>();
+
             try
             {
-                if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\TruckersMP\\data\\ets2\\ui\\ui_skin_backup.png"))
+                foreach (var file in System.IO.Directory.GetFiles(TruckersMPDirectory, "*.*", System.IO.SearchOption.AllDirectories))
                 {
-                    File.Copy(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\TruckersMP\\data\\ets2\\ui\\ui_skin_backup.png", Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\TruckersMP\\data\\ets2\\ui\\ui_skin.png", true);
-                }
-                else
-                {
-                    MessageBox.Show("ETS2: No backup found!\n\nThis can also mean you've yet to add a custom skin to ETS2MP", "TruckersMP UI Changer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    FileInfo info = new FileInfo(file);
+
+                    string key = info.FullName;
+                    key = key.Replace(TruckersMPDirectory, "");
+
+                    TruckersMPFiles.Add(key);
                 }
             }
             catch
             {
-                MessageBox.Show("ETS2: An error occurred restoring the UI Skin!", "TruckersMP UI Changer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occured while mapping TruckersMP!", "TruckersMP UI Changer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
             try
             {
-                if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\TruckersMP\\data\\ats\\ui\\ui_skin_backup.png"))
+                foreach (var file in TruckersMPFiles)
                 {
-                    File.Copy(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\TruckersMP\\data\\ats\\ui\\ui_skin_backup.png", Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\TruckersMP\\data\\ats\\ui\\ui_skin.png", true);
-                }
-                else
-                {
-                    MessageBox.Show("ATS: No backup found!\n\nThis can also mean you've yet to add a custom skin to ATSMP", "TruckersMP UI Changer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (file.Contains("_backup")) {
+                        string orig = file.Replace("_backup", "");
+                        File.Copy(TruckersMPDirectory + file, TruckersMPDirectory + orig, true);
+                        File.Delete(TruckersMPDirectory + file);
+                    }
                 }
             }
             catch
             {
-                MessageBox.Show("ATS: An error occurred restoring the UI Skin!", "TruckersMP UI Changer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occured while restoring files!", "TruckersMP UI Changer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
             MessageBox.Show("Restore complete!", "TruckersMP UI Changer", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
         }
 
-        private void button4_Click(object sender, EventArgs e)
-        {
-            //ETS2
-            SaveFileDialog dialog = new SaveFileDialog();
-            dialog.Filter = "Image files (*.png) | *.png";
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\TruckersMP\\data\\ets2\\ui\\ui_skin_backup.png"))
-                    {
-                        File.Copy(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\TruckersMP\\data\\ets2\\ui\\ui_skin_backup.png", dialog.FileName, true);
-                    }
-                    else
-                    {
-                        File.Copy(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\TruckersMP\\data\\ets2\\ui\\ui_skin.png", dialog.FileName, true);
-                    }
-                }
-                catch
-                {
-                    MessageBox.Show("ETS2: An error occurred extracting the skin!", "TruckersMP UI Changer", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                MessageBox.Show("ETS2: Skin extracted!", "TruckersMP UI Changer", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-            }
-        }
-
         private void button3_Click(object sender, EventArgs e)
         {
-            //ATS
-            SaveFileDialog dialog = new SaveFileDialog();
-            dialog.Filter = "Image files (*.png) | *.png";
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\TruckersMP\\data\\ats\\ui\\ui_skin_backup.png"))
-                    {
-                        File.Copy(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\TruckersMP\\data\\ats\\ui\\ui_skin_backup.png", dialog.FileName, true);
-                    }
-                    else
-                    {
-                        File.Copy(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\TruckersMP\\data\\ats\\ui\\ui_skin.png", dialog.FileName, true);
-                    }
-                }
-                catch
-                {
-                    MessageBox.Show("ATS: An error occurred extracting the skin!", "TruckersMP UI Changer", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                MessageBox.Show("ATS: Skin extracted!", "TruckersMP UI Changer", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-            }
+            //Open dir
         }
 
         private void button5_Click(object sender, EventArgs e)
