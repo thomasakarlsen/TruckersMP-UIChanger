@@ -121,7 +121,7 @@ namespace UIChanger
                         {
                             foreach (var file in TruckersMPFiles)
                             {
-                                string clean = ((file.Replace("\\ats", "")).Replace("\\ets2", "")).Replace("\\shared", "");
+                                string clean = ((file.Replace("\\ats_mod", "")).Replace("\\ets2_mod", "")).Replace("\\shared_mod", "");
 
                                 if (UIPackFiles.Contains(clean))
                                 {
