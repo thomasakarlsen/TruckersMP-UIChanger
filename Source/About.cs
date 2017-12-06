@@ -24,12 +24,12 @@ namespace UIChanger
 
         private void legalLink_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("https://github.com/TheUnknownNO/TruckersMP-Launcher/blob/master/LICENSE");
+            System.Diagnostics.Process.Start("https://github.com/TheUnknownNO/TruckersMP-UIChanger/blob/master/LICENSE");
         }
 
         private void githubLink_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("https://github.com/TheUnknownNO/TruckersMP-Launcher");
+            System.Diagnostics.Process.Start("https://github.com/TheUnknownNO/TruckersMP-UIChanger");
         }
     }
 }
